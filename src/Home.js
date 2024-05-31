@@ -28,8 +28,6 @@ function Home() {
             fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonNameToSearch)
                 .then(res => res.json())
                 .then(data => navigate("/pokemonInfo", { state: { pokemonData: data } }))
-                .catch(error=>alert("Invalid Pokemon, please try again..."))
-
         }
     }, [pokemonNameToSearch, navigate])
 
