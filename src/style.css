@@ -1,0 +1,47 @@
+.header-colour {
+    background-color: #4D1212;
+}
+
+.background-image {
+    opacity: 95%;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-top {
+    top: 5%;
+    width: 100%;
+}
+
+.button-colour {
+    background-color: #4D1212;
+    color: white;
+}
+
+.theme-colour {
+    position: absolute;
+    right: 0%;
+}
+
+.responsive-info {
+    top: 100%;
+    background-color: #cccccc;
+ 
+}
+
+.responsive-img {
+    top: 10%;
+    left: 50%;
+}
+
+.responsive-img img {
+    height: 130px !important;
+    width: 130px !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block
+}
