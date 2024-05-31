@@ -11,7 +11,7 @@ export function PokemonData() {
     const [species, setSpecies] = useState([]);
     const [description, setDescription] = useState('');
     const [isDark, setIsDark] = useState(false);
-    const [borderType, setBorderType] = useState(state.pokemonData.types[0].type.name);
+    const [borderType] = useState(state.pokemonData.types[0].type.name);
 
     const styles = {
         backgroundColor: (isDark) ? '#222222' : '#cccccc', height: '100vh',
