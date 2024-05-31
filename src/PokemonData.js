@@ -98,14 +98,14 @@ export function PokemonData() {
                 .catch(error => console.error('Error fetching species data:', error));
 
         }
-    }, []);
+    }, [state, state.pokemonData]);
 
     useEffect(() => {
         const species = state.pokemonData.species.url
         fetch(species)
             .then(res => res.json())
             .then(data => setSpecies(data))
-    }, [])
+    }, [state, state.pokemonData])
 
     if (state && state.pokemonData && state.pokemonData.types) {
         const { types } = state.pokemonData;

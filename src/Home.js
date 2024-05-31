@@ -31,7 +31,7 @@ function Home() {
                 .catch(error=>alert("Invalid Pokemon, please try again..."))
 
         }
-    }, [pokemonNameToSearch])
+    }, [pokemonNameToSearch, navigate])
 
     return (
         <div>
