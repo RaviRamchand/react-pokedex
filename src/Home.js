@@ -11,6 +11,7 @@ function Home() {
 
     const [pokemonName, setPokemonName] = useState("")
     const [pokemonNameToSearch, setPokemonNameToSearch] = useState("");
+    const [error, setError] = useState(false);
 
     function handleChange(event) {
         setPokemonName(event.target.value)
@@ -26,8 +27,23 @@ function Home() {
         if (pokemonNameToSearch) {
             setPokemonNameToSearch(pokemonNameToSearch.trim().toLowerCase())
             fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonNameToSearch)
-                .then(res => res.json())
+                .then(res => {
+
+                    if (res.status === 404) {
+                        throw new Error("Error")
+                    }
+
+                    if (res.ok) {
+                        return res.json()
+                    }
+
+                })
                 .then(data => navigate("/pokemonInfo", { state: { pokemonData: data } }))
+                .catch(err => {
+                    console.log("Error" + err.message)
+                    setError(true)
+                })
+
         }
     }, [pokemonNameToSearch, navigate])
 
@@ -45,6 +61,8 @@ function Home() {
                 <form onSubmit={handleSubmit}>
 
                     <div className="col-12 d-none d-md-block">
+                        {error && <h5 style={{ textAlign: 'center', fontFamily: 'normal', color: 'red', backgroundColor: 'white' }}>Invalid Pokemon, please try again</h5>}
+
                         <div className="d-flex">
                             <input input type="text" placeholder="Pokemon Name or ID" onChange={handleChange} className="form-control input-lg w-auto" />
                             <button className="ms-2 button-colour w-100" disabled={pokemonName === ''}>Find Pokemon</button>
@@ -55,6 +73,11 @@ function Home() {
                         <input input type="text" placeholder="Pokemon Name or ID" onChange={handleChange} className="form-control input-lg w-auto" />
                         <br />
                         <button className="button-colour w-100" disabled={pokemonName === ''}>Find Pokemon</button>
+
+                        <br />
+                        <br />
+
+                        {error && <p style={{ textAlign: 'center', fontFamily: 'normal', color: 'red', backgroundColor: 'white' }}>Invalid Pokemon please try again</p>}
                     </div>
 
                 </form>
